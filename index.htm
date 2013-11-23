@@ -11,12 +11,21 @@ ul{
 	margin: 0;
 	padding: 0;
 }
+body{
+	margin: 0;
+	font-family: Arial, "SimHei";
+	word-break: break-all;
+}
+
+#show{
+	font-size: 12px;
+}
 
 /* main */
 ul.tree{
-	margin-left: 10px;
+	margin-left: 20px;
 	padding: 10px 0 0 20px;
-	border-left: 1px solid red;
+	border-left: 1px solid #666;
 }
 	li.tree{
 		padding-bottom: 10px;
@@ -28,11 +37,11 @@ ul.tree{
 		height: 100%;
 		width: 20px;
 		border: 1px solid;
-		border-color: red  transparent  transparent transparent;
+		border-color: #666  transparent  transparent transparent;
 		content: "";
 		position: absolute;
 		left: -21px;
-		top: 10px;
+		top: 15px;
 	}
 	ul.tree>li.tree:last-child:before{
 		border-left-color: #fff;
@@ -44,12 +53,23 @@ ul.tree{
 			display: block;
 		}
 			.nodeName{
-				border: 1px solid #000;
-				padding: 0px 10px;
+				padding: 5px 10px;
 				display: inline-block;
 				height: 20px;
 				line-height: 20px;
 				cursor: pointer;
+				background: #75b9e7;
+				color: #fff;
+				text-align: center;
+				min-width: 20px;
+				max-width: 100px;
+				overflow: hidden;
+	            text-overflow: ellipsis;
+	            white-space: nowrap;
+				transition: .3s ease;
+			}
+			.nodeName:hover, .nodeName:active{
+				background: #2980b9;
 			}
 			.nodeInfo{
 				position: absolute;
