@@ -48,6 +48,11 @@ ul.tree{
 	}
 		.self{
 			display: inline-block;
+			background: #75b9e7;
+			transition: .3s ease;
+		}
+		.self:hover, .self:active{
+			background: #2980b9;
 		}
 		.self:hover .nodeInfo{
 			display: block;
@@ -58,7 +63,6 @@ ul.tree{
 				height: 20px;
 				line-height: 20px;
 				cursor: pointer;
-				background: #75b9e7;
 				color: #fff;
 				text-align: center;
 				min-width: 20px;
@@ -66,10 +70,6 @@ ul.tree{
 				overflow: hidden;
 	            text-overflow: ellipsis;
 	            white-space: nowrap;
-				transition: .3s ease;
-			}
-			.nodeName:hover, .nodeName:active{
-				background: #2980b9;
 			}
 			.nodeInfo{
 				position: absolute;
