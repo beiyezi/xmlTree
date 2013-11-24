@@ -17,9 +17,15 @@ body{
 	word-break: break-all;
 }
 
-#show{
+.stage{
 	font-size: 12px;
+	display: flex;
 }
+	#stage-tree, #stage-node{
+		flex: 1;
+	}
+
+
 
 /* main */
 ul.tree{
@@ -87,7 +93,14 @@ ul.tree{
 	<h1>demo of xml-tree</h1>
 	<p>This is a demo which reads a xml file and displays it on page.</p>
 	<p>Works on chrome and firefox.</p>
-	<div id="show"></div>
+	<div class="stage">
+		<div id="stage-tree">
+			
+		</div>
+		<div id="stage-node">
+			asd
+		</div>
+	</div>
 	<script src="js/main.js"></script>
 </body>
 </html>

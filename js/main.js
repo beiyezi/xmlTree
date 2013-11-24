@@ -5,18 +5,47 @@
 	whileking@gmail.com
 	https://github.com/dragonwong
 */
+	var stage_tree = document.getElementById("stage-tree"),
+		xr_nodes = [];	/* xmlreader node */
+
+
 
 
     getXML("xml/example.xml", doLoadBack);
 
     function doLoadBack(back_data){
-		document.getElementById("show").innerHTML = xmlTree(back_data);
+		stage_tree.innerHTML = xmlTree(back_data);
+
+		//addXmlNodeEvent
+		var nodes = Array.prototype.slice.call(stage_tree.querySelectorAll('.self'));
+
+		nodes.forEach(function(item){
+			item.onclick = function(){
+				console.log(this);
+			};
+		});
+
     }
+
+    function showNode(node){
+    	
+
+    }
+
+
+
 
 	function xmlTree(back_data){
 
 		//根节点
-		var root = back_data.documentElement;
+		var root = back_data.documentElement,
+			xr_node_id = -1,
+			xr_node_parent_stack = [];	/* 父节点反向栈 */
+
+		xr_node_parent_stack[0] = {
+			id: -1,
+			children: []
+		};
 
 		//开始构建输出
 		var output = '<ul>';
@@ -24,8 +53,33 @@
 		//main
 		(function main(node){
 
+
 			var children = node.children,
 				children_len = children.length;
+
+			// console.log('this is: ' + node.nodeName);
+			// console.log(xr_node_parent_stack.length);
+			// console.log('---------------');
+
+			xr_node_id++;
+
+			var xr_node_parent = xr_node_parent_stack[0];
+			//父元素子元素属性
+			xr_node_parent.children.push(xr_node_id);
+
+			var xr_node = {
+				id: xr_node_id,
+				name: node.nodeName,
+				parent_id : xr_node_parent.id,
+				children: []
+			};
+
+			xr_nodes.push(xr_node);
+			
+			
+
+
+
 
 			//开始构建该节点
 			output += '<li class="tree">';
@@ -45,14 +99,23 @@
 
 				//构建子节点内容
 				if(children_len > 0){
-
 					//如果有子节点
+
+					xr_node_parent_stack.unshift(xr_node);	/* 父元素进栈 */
+					
+
 					//递归子节点
 					output += '<ul class="tree">';
 					for(var i=0; i<children_len; i++){
 						arguments.callee(children[i]);
 					}
 					output += '</ul>';
+					
+					xr_node_parent_stack.shift();			/* 父元素出栈 */
+
+				}else{
+					//如果无子节点
+
 				}
 
 			//结束构建该节点
